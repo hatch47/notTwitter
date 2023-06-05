@@ -1,0 +1,27 @@
+next:
+
+MAKE SURE USERNAME DOESNT EXIST IN DATABASE AND IS BETWEEN 3-40 CHARACTERS
+ -in signup.php make sure username is unique
+
+
+today:
+
+
+sql password: Sql121212
+
+
+sql minimum:
+Tweet has ID, OwnerID, Content
+UserAccount has ID, Email, Username, Password
+Follower has ID, OwnerID and FollowerID
+
+
+things to add:
+see all tweets (from everyone)
+see popular accounts (accounts with most followers)
+profile pic
+clicking username views profile - in followers/following list
+likes, retweets, comments, quotes
+change password
+fix issue with longer tweets not aligning with border
+search for account - order it byaccounts with the most followers

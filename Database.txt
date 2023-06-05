@@ -1,0 +1,79 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema nottwitter
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema nottwitter
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `nottwitter` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `nottwitter` ;
+
+-- -----------------------------------------------------
+-- Table `nottwitter`.`useraccount`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `nottwitter`.`useraccount` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `USERNAME` VARCHAR(255) NOT NULL,
+  `EMAIL` VARCHAR(255) NOT NULL,
+  `USER_PASSWORD` VARCHAR(255) NOT NULL,
+  `BIO` VARCHAR(300) NULL DEFAULT NULL,
+  `DISPLAYNAME` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 20
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `nottwitter`.`follower`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `nottwitter`.`follower` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `OWNERID` INT NULL DEFAULT NULL,
+  `FOLLOWERID` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  INDEX `OWNERID` (`OWNERID` ASC) VISIBLE,
+  INDEX `FOLLOWERID` (`FOLLOWERID` ASC) VISIBLE,
+  CONSTRAINT `follower_ibfk_1`
+    FOREIGN KEY (`OWNERID`)
+    REFERENCES `nottwitter`.`useraccount` (`ID`),
+  CONSTRAINT `follower_ibfk_2`
+    FOREIGN KEY (`FOLLOWERID`)
+    REFERENCES `nottwitter`.`useraccount` (`ID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `nottwitter`.`tweet`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `nottwitter`.`tweet` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `OWNERID` INT NULL DEFAULT NULL,
+  `CONTENT` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`ID`),
+  INDEX `OWNERID` (`OWNERID` ASC) VISIBLE,
+  CONSTRAINT `tweet_ibfk_1`
+    FOREIGN KEY (`OWNERID`)
+    REFERENCES `nottwitter`.`useraccount` (`ID`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 26
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
