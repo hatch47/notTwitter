@@ -107,7 +107,7 @@ if (isset($_POST['follow_button'])) {
 
         // Display success or error message
         if (mysqli_stmt_affected_rows($insert_stmt) > 0) {
-            echo "You're following this account";
+            echo "<p id='success-message'>You're following this account</p>";
         } else {
             echo "Error occurred while following.";
         }
@@ -148,9 +148,9 @@ if (isset($_POST['unfollow_button'])) {
 
         // Display success or error message
         if (mysqli_stmt_affected_rows($delete_stmt) > 0) {
-            echo "You're no longer following this account";
+            echo "<p id='success-message'>You're no longer following this account</p>";
         } else {
-            echo "You're not following this account";
+            echo "<p id='success-message'>You're not following this account</p>";
         }
     } else {
         echo "User not found.";
@@ -295,6 +295,16 @@ mysqli_close($conn); // close the database connection
       followersDiv.style.display = 'none';
     }
   }
+</script>
+
+<script>
+  // Automatically hide the success message after 3 seconds
+  setTimeout(function() {
+    var successMessage = document.getElementById('success-message');
+    if (successMessage) {
+      successMessage.style.display = 'none';
+    }
+  }, 3000); // 3000 milliseconds = 3 seconds
 </script>
 
 </body>
