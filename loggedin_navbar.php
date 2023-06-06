@@ -10,7 +10,9 @@
     <a href="home.php">Home</a>
     <!-- <a href="login.php">Log Out</a> -->
     <a href="myProfile.php">Profile</a>
-    <a href="logout.php">Logout</a>    
+    <a href="explore.php">Explore</a>
+    <a href="search.php">Search</a>  
+    <a href="logout.php">Logout</a>  
   </div>
   
   <?php

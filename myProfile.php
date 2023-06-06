@@ -89,17 +89,21 @@ include "editProfile.php";
   WHERE f.OWNERID = $user_id";
   $result = mysqli_query($conn, $sql);
 
-  // Print the  names
-  if (mysqli_num_rows($result) > 0) {
+  // Print the names
+if (mysqli_num_rows($result) > 0) {
     echo "<h2><b>Followers</b></h2>";
-      while ($row = mysqli_fetch_assoc($result)) {
-          echo "<div class='text-offset'>";
-          echo "<h3 style='flex: 0.3;' class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: rgb(145, 0, 0); margin-top: 0; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h3>";
-        echo "</div><br>";
-      }
-  } else {
-      echo "<br><p class='text-offset'>No followers found.</p>";
-  }
+    echo "<table style='border-collapse: collapse;'>";
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td style='border: none;'>";
+        echo "<h3 class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: rgb(145, 0, 0); margin-top: 0; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h3>";
+        echo "</td>";
+        echo "</tr>";
+    }
+    echo "</table><br>";
+} else {
+    echo "<br><p class='text-offset'>No accounts.</p>";
+}
   ?>
 </div>
 
@@ -119,14 +123,17 @@ $result = mysqli_query($conn, $sql);
 // Print the names
 if (mysqli_num_rows($result) > 0) {
     echo "<h2><b>Following</b></h2>";
+    echo "<table style='border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<div class='text-offset'>";
-        // echo "<h3 class='username' style='margin-top: 0;'><b>" . $row['USERNAME'] . "</b></h3>";
-        echo "<h3 style='flex: 0.3;' class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: rgb(145, 0, 0); margin-top: 0; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h3>";
-        echo "</div>";
+        echo "<tr>";
+        echo "<td style='border: none;'>";
+        echo "<h3 class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: rgb(145, 0, 0); margin-top: 0; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h3>";
+        echo "</td>";
+        echo "</tr>";
     }
+    echo "</table><br>";
 } else {
-    echo "<br><p class='text-offset'>Not following any accounts.</p>";
+    echo "<br><p class='text-offset'>No accounts.</p>";
 }
 
 mysqli_close($conn); // close the database connection
@@ -142,29 +149,40 @@ include "DBConnection.php"; // include the database connection file
 $user_id = $_SESSION['user_id'];
 
 // Select the names from the user table
-$sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME
+$sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, T.TWEETDATE
         FROM USERACCOUNT ua
         LEFT JOIN TWEET t ON t.OWNERID = ua.ID
         WHERE ua.ID = $user_id
         ORDER BY t.ID DESC";
 $result = mysqli_query($conn, $sql);
 
-// Print the names
+// Print the data in a table format
 if (mysqli_num_rows($result) > 0) {
-    echo "<div class='content-container'>";
-    echo "<h2 class='text-offset'><b>Tweets</b></h2>";
+    echo "<h2><b>Tweets</b></h2>";
+    echo "<table style='border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<div class='text-offset'>";
-        echo "<div style='display: flex;'>";
-        echo "<h3 style='flex: 0.3;' class='username'>" . $row['DISPLAYNAME'] . "</h3>";
-        echo "<h5 style='flex: 0.0;' class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: black; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h5>";
-        echo "</div>";
-        echo "<h4 style='margin-top: 0;'>" . $row['CONTENT'] . "</h4>";
-        echo "</div><br>";
+        echo "<tr>";
+        echo "<td style='border: none; padding: 1px; background-color: white; width: 25%;'>";
+        echo "<h5 class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: black; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h5>";
+        echo "</td>";
+        echo "<td style='border: none; padding: 1px; background-color: white;'>";
+        echo "<h3 class='username'>" . $row['DISPLAYNAME'] . "</h3>";
+        echo "</td>";
+        echo "</tr>";
+        echo "<tr>";
+        echo "<td colspan='2' style='border: none; padding: 1px; background-color: white;'>";
+        echo "<h4 style='margin: -10px 0 5px 0;'>". $row['CONTENT'] . "</h4>";
+        echo "</td>";
+        echo "</tr>";
+        echo "<tr>";
+        echo "<td colspan='2' style='border: none; padding: 1px; background-color: white;'>";
+        echo "<h6 style='color: dimgrey; margin: 0 0 25px;'>". $row['TWEETDATE'] . "</h6>";
+        echo "</td>";
+        echo "</tr>";
     }
-    echo "</div>";
+    echo "</table>";
 } else {
-    echo "<br>No tweets found.";
+    echo "No tweets found.";
 }
 
 mysqli_close($conn); // close the database connection
