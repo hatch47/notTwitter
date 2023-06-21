@@ -34,6 +34,9 @@ include "DBConnection.php"; // include the database connection file
 // Get the user ID from the current session
 $user_id = $_SESSION['user_id'];
 
+include "profilepic.php";
+
+
 $sql = "SELECT USERNAME, DISPLAYNAME
         FROM USERACCOUNT
         WHERE ID = $user_id";

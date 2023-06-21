@@ -30,10 +30,11 @@ include "loggedin_navbar.php";
 <?php
 include "DBConnection.php"; // include the database connection file
 
-// Get the user ID from the current session  // @contentposter
-$user_id = $_SESSION['user_id'];
-$user_profile = $_GET['username'];
 
+include "viewProfilePic.php";
+
+
+// Retrieve and display username and displayname
 if (isset($_GET['username'])) {
   $user_profile = $_GET['username'];
   
@@ -54,6 +55,7 @@ if (isset($_GET['username'])) {
       }
   }
 }
+
 
 
 $sql = "SELECT BIO

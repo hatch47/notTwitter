@@ -17,6 +17,44 @@ require "session.php";
 include "design.php";
 include "loggedin_navbar.php";
 ?> 
+<br><br>
+<form method="POST" action="">
+  <input type="text" name="search" placeholder="Search Users">
+  <input type="submit" value="Search">
+</form>
+<br>
+
+<?php
+include "DBConnection.php"; // include the database connection file
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Retrieve the search query from the form input
+  $search = $_POST['search'];
+
+  // Prepare the SQL query with a placeholder for the search term
+  $sql = "SELECT USERNAME FROM USERACCOUNT WHERE USERNAME LIKE '%{$search}%'";
+
+  // Execute the query
+  $result = mysqli_query($conn, $sql);
+
+  // Check if any rows are returned
+  if (mysqli_num_rows($result) > 0) {
+    echo "<h2><b>Search Results</b></h2>";
+    echo "<table style='border-collapse: collapse;'>";
+    while ($row = mysqli_fetch_assoc($result)) {
+      echo "<tr>";
+      echo "<td style='border: none;'>";
+      echo "<h3 class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: rgb(145, 0, 0); margin-top: 0; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h3>";
+      echo "</td>";
+      echo "</tr>";
+    }
+    echo "</table>";
+  } else {
+    echo "<p>No matches found.</p>";
+  }
+}
+?>
+
 
 
 <?php
