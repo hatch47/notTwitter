@@ -32,28 +32,10 @@ $sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, T.TWEETDATE
         ORDER BY t.ID DESC";
 $result = mysqli_query($conn, $sql);
 
-// Print the  names
-// if (mysqli_num_rows($result) > 0) {
-//     echo "<div class='content-container'>";
-//     while ($row = mysqli_fetch_assoc($result)) {
-//         // solid white can be switched to solid grey when figure out sizing
-//         echo "<div class='text-offset' style='border: .05px solid white; padding: 10px; background-color: white; width: 275%;'>";
-//         echo "<div style='display: flex;'>";
-//         echo "<h3 style='flex: 0.3;' class='username'>" . $row['DISPLAYNAME'] . "</h3>";
-//         echo "<h5 style='flex: 0.0;' class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: black; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h5>";
-//         echo "</div>";
-//         echo "<h4 style='margin-top: 0;'>" . $row['CONTENT'] . "</h4>";
-//         echo "<h6 style='margin-top: 0; color: dimgrey;'>" . $row['TWEETDATE'] . "</h6>";
-//         echo "</div>";
-//     }
-//     echo "</div>";
-// } else {
-//     echo "No tweets found.";
-// }
 
 // Print the data in a table format
 if (mysqli_num_rows($result) > 0) {
-    echo "<h2><b>All Tweets</b></h2>";
+    echo "<h2><b>Explore Tweets</b></h2>";
     echo "<table style='border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";

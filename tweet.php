@@ -53,8 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </script>
 
 <form method='post'>
-  <label><b>New Tweet</b></label>
-  <input type="text" name="content" style="width: 500px; height: 25px;" required>
+  <label><b>New Tweet</b></label><br>
+  <!-- <input type="text" name="content" style="width: 500px; height: 25px;" required> -->
+  <textarea type="text" name="content" rows="3" cols="50" required></textarea>
+  <br>
   <input type="submit" value="Post Tweet">
 </form>
 
