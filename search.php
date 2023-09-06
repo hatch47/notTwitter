@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Check if any rows are returned
   if (mysqli_num_rows($result) > 0) {
     echo "<h2><b>Search Results</b></h2>";
+    echo "<div style='width: 800px; border: 1px solid lightgrey; margin-bottom: 20px;'>";
     echo "<table style='border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
       echo "<tr>";
@@ -48,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo "</td>";
       echo "</tr>";
     }
-    echo "</table>";
+    echo "</table></div>";
   } else {
     echo "<p>No matches found.</p>";
   }
@@ -69,6 +70,7 @@ $result = mysqli_query($conn, $sql); // Execute the query and assign the result 
 // Print the names
 if (mysqli_num_rows($result) > 0) {
     echo "<h2><b>Accounts to Follow</b></h2>";
+    echo "<div style='width: 800px; border: 1px solid lightgrey; margin-bottom: 20px;'>";
     echo "<table style='border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
@@ -77,7 +79,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "</td>";
         echo "</tr>";
     }
-    echo "</table>";
+    echo "</table></div>";
 } else {
     echo "<br><p class='text-offset'>No accounts.</p>";
 }

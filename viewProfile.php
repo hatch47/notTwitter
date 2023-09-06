@@ -8,7 +8,7 @@ require "session.php";
 <link rel="stylesheet" href="styles.css">
 <script src="script.js"></script>
 <link rel="icon" href="Logo.png" type="image/png">
-<title>Profile</title>
+<title>View Profile</title>
 </head>
 <body>
 <div class="container">
@@ -25,12 +25,13 @@ include "loggedin_navbar.php";
   <button class="click-button" onclick="toggleFollowing()">Following</button>
 </div>
 </div>
-<div class="designer-element" style="margin-left: 500px;">
+<!-- <div class="designer-element" style="margin-left: 500px;"> -->
+<div class="container">
 
 <?php
 include "DBConnection.php"; // include the database connection file
 
-
+echo "<br><div style='width: 1000px; border: 1px solid lightgrey; margin-bottom: 3px;'>";
 include "viewProfilePic.php";
 
 
@@ -56,8 +57,6 @@ if (isset($_GET['username'])) {
   }
 }
 
-
-
 $sql = "SELECT BIO
         FROM USERACCOUNT
         WHERE USERNAME = ?";
@@ -71,17 +70,16 @@ if (mysqli_num_rows($result) > 0) {
         echo "<div>";
         echo "<p>Bio: ";
         echo "<b class='username'>" . $row['BIO'] . "</b></p>";
-        echo "</div><br>";
+        echo "</div>";
     }
 }
 
-
-
 // Add the button for following
-echo "<form method='POST'>";
+echo "<form class='follow-form' method='POST'>";
 echo "<input type='hidden' name='username' value='$user_profile'>";
-echo "<button type='submit' style='color: white; background-color: rgb(145, 0, 0); margin-left: -1490px;' name='follow_button'>Follow</button>";
+echo "<button type='submit' style='color: white; background-color: rgb(145, 0, 0); margin-bottom: 5px;' name='follow_button'>Follow</button>";
 echo "</form>";
+
 
 if (isset($_POST['follow_button'])) {
     // Get the username
@@ -109,7 +107,7 @@ if (isset($_POST['follow_button'])) {
 
         // Display success or error message
         if (mysqli_stmt_affected_rows($insert_stmt) > 0) {
-            echo "<p id='success-message'>You're following this account</p>";
+            echo "<p id='success-message'>You're following this account.</p>";
         } else {
             echo "Error occurred while following.";
         }
@@ -119,9 +117,9 @@ if (isset($_POST['follow_button'])) {
 }
 
 // Add the button for unfollowing
-echo "<form method='POST'>";
+echo "<form class='follow-form' method='POST'>";
 echo "<input type='hidden' name='username' value='$user_profile'>";
-echo "<button type='submit' style='color: white; background-color: rgb(145, 0, 0); margin-top:3px; margin-left: -1478px;' name='unfollow_button'>Unfollow</button>";
+echo "<button type='submit' style='color: white; background-color: rgb(145, 0, 0); margin-bottom: 5px;' name='unfollow_button'>Unfollow</button>";
 echo "</form>";
 
 if (isset($_POST['unfollow_button'])) {
@@ -150,14 +148,16 @@ if (isset($_POST['unfollow_button'])) {
 
         // Display success or error message
         if (mysqli_stmt_affected_rows($delete_stmt) > 0) {
-            echo "<p id='success-message'>You're no longer following this account</p>";
+            echo "<p id='success-message'>You're no longer following this account.</p>";
         } else {
-            echo "<p id='success-message'>You're not following this account</p>";
+            echo "<p id='success-message'>You're not following this account.</p>";
         }
     } else {
         echo "User not found.";
     }
 }
+
+echo "</div><br>";
 
 mysqli_close($conn); // close the database connection
 ?>
@@ -187,6 +187,7 @@ mysqli_close($conn); // close the database connection
 
    // Print the names
 if (mysqli_num_rows($result) > 0) {
+  echo "<div class='followers-container'>";
     echo "<h2><b>Followers</b></h2>";
     echo "<table style='border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
@@ -197,9 +198,13 @@ if (mysqli_num_rows($result) > 0) {
         echo "</tr>";
     }
     echo "</table><br>";
+    echo "</div>";
 } else {
-    echo "<br><p class='text-offset'>No accounts.</p>";
+    echo "<div class='no-follow'>";
+    echo "<br><h4 class='text-offset'>No Followers to Display.</h4>";
+    echo "</div>";
 }
+
   ?>
 </div>
 
@@ -223,6 +228,7 @@ $result = mysqli_stmt_get_result($stmt);
 
 // Print the names
 if (mysqli_num_rows($result) > 0) {
+    echo "<div class='following-container'>";
     echo "<h2><b>Following</b></h2>";
     echo "<table style='border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
@@ -233,9 +239,13 @@ if (mysqli_num_rows($result) > 0) {
         echo "</tr>";
     }
     echo "</table><br>";
+    echo "</div>";
 } else {
-    echo "<br><p class='text-offset'>No accounts.</p>";
-}
+    echo "<div class='no-follow'>";
+    echo "<br><h4 class='text-offset'>No Following to Display.</h4>";
+    echo "</div>";
+} 
+
 
 mysqli_close($conn); // close the database connection
 ?>
@@ -251,7 +261,7 @@ $user_id = $_SESSION['user_id'];
 $user_profile = $_GET['username'];
 
 // Select the names from the user table
-$sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, T.TWEETDATE
+$sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, T.TWEETDATE, ua.PROFILEPIC
         FROM USERACCOUNT ua
         LEFT JOIN TWEET t ON t.OWNERID = ua.ID
         WHERE ua.USERNAME = ?
@@ -261,34 +271,7 @@ mysqli_stmt_bind_param($stmt, "s", $user_profile);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
-// Print the data in a table format
-if (mysqli_num_rows($result) > 0) {
-    echo "<h2><b>Tweets</b></h2>";
-    echo "<table style='border-collapse: collapse;'>";
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr>";
-        echo "<td style='border: none; padding: 1px; background-color: white; width: 25%;'>";
-        echo "<h5 class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: black; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h5>";
-        echo "</td>";
-        echo "<td style='border: none; padding: 1px; background-color: white;'>";
-        echo "<h3 class='username'>" . $row['DISPLAYNAME'] . "</h3>";
-        echo "</td>";
-        echo "</tr>";
-        echo "<tr>";
-        echo "<td colspan='2' style='border: none; padding: 1px; background-color: white;'>";
-        echo "<h4 style='margin: -10px 0 5px 0;'>". $row['CONTENT'] . "</h4>";
-        echo "</td>";
-        echo "</tr>";
-        echo "<tr>";
-        echo "<td colspan='2' style='border: none; padding: 1px; background-color: white;'>";
-        echo "<h6 style='color: dimgrey; margin: 0 0 25px;'>". $row['TWEETDATE'] . "</h6>";
-        echo "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-} else {
-    echo "No tweets found.";
-}
+include "displayTweets.php";
 
 mysqli_close($conn); // close the database connection
 ?>

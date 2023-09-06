@@ -26,41 +26,14 @@ include "DBConnection.php"; // include the database connection file
 $user_id = $_SESSION['user_id'];
 
 // Select the names from the table
-$sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, T.TWEETDATE
+$sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, T.TWEETDATE, ua.PROFILEPIC
         FROM USERACCOUNT ua
         LEFT JOIN TWEET t ON t.OWNERID = ua.ID
         ORDER BY t.ID DESC";
 $result = mysqli_query($conn, $sql);
 
-
-// Print the data in a table format
-if (mysqli_num_rows($result) > 0) {
     echo "<h2><b>Explore Tweets</b></h2>";
-    echo "<table style='border-collapse: collapse;'>";
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr>";
-        echo "<td style='border: none; padding: 1px; background-color: white; width: 25%;'>";
-        echo "<h5 class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: black; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h5>";
-        echo "</td>";
-        echo "<td style='border: none; padding: 1px; background-color: white;'>";
-        echo "<h3 class='username'>" . $row['DISPLAYNAME'] . "</h3>";
-        echo "</td>";
-        echo "</tr>";
-        echo "<tr>";
-        echo "<td colspan='2' style='border: none; padding: 1px; background-color: white;'>";
-        echo "<h4 style='margin: -10px 0 5px 0;'>". $row['CONTENT'] . "</h4>";
-        echo "</td>";
-        echo "</tr>";
-        echo "<tr>";
-        echo "<td colspan='2' style='border: none; padding: 1px; background-color: white;'>";
-        echo "<h6 style='color: dimgrey; margin: 0 0 25px;'>". $row['TWEETDATE'] . "</h6>";
-        echo "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-} else {
-    echo "No tweets found.";
-}
+    include "displayTweets.php";
 
 mysqli_close($conn); // close the database connection
 ?>

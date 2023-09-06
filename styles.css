@@ -15,6 +15,9 @@
     text-align: center;
   }
 
+  .follow-form {
+    text-align: left;
+  }
 
   .heading {
     border: 2px solid white;
@@ -104,6 +107,47 @@
   .follow-button {
     color: white;
     background-color: rgb(145, 0, 0);
-    margin-left: -1475px;
+    /* margin-left: -1475px; */
   }
+
+
+.followers-container {
+    position: absolute;
+    top: 25%;
+    right: 15%;
+    text-align: left;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid lightgrey;
+}
+
+.following-container {
+  position: absolute;
+  top: 25%;
+  right: 5%;
+  text-align: left;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid lightgrey;
+}
+
+.no-follow {
+  position: absolute;
+  top: 15%;
+  right: 7%;
+  text-align: left;
+  background-color: white;
+  padding: 10px;
+}
+
+.edit-profile-container {
+    position: absolute;
+    top: 27%;
+    right: 30%;
+    text-align: left;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid lightgrey;
+  
+}
 

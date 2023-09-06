@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $result = mysqli_query($conn, $sql);
 
   if ($result) {
-    echo "<br><span id='success-message'>Tweet Sent</span>";
+    echo "<br><span id='success-message'>Tweet Sent.</span>";
   }
 
   $conn->close();
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <form method='post'>
   <label><b>New Tweet</b></label><br>
   <!-- <input type="text" name="content" style="width: 500px; height: 25px;" required> -->
-  <textarea type="text" name="content" rows="3" cols="50" required></textarea>
+  <textarea type="text" name="content" rows="2" cols="125" required></textarea>
   <br>
   <input type="submit" value="Post Tweet">
 </form>
