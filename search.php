@@ -40,10 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Check if any rows are returned
   if (mysqli_num_rows($result) > 0) {
     echo "<h2><b>Search Results</b></h2>";
-    echo "<div style='width: 800px; border: 1px solid lightgrey; margin-bottom: 20px;'>";
-    echo "<table style='border-collapse: collapse;'>";
+    echo "<div style='width: 400px; margin-bottom: 20px;'>";
+    echo "<table style='width: 400px; border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
-      echo "<tr>";
+      echo "<tr style='border: 1px solid lightgrey;'>";
       echo "<td style='border: none;'>";
       echo "<h3 class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: rgb(145, 0, 0); margin-top: 0; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h3>";
       echo "</td>";
@@ -70,10 +70,10 @@ $result = mysqli_query($conn, $sql); // Execute the query and assign the result 
 // Print the names
 if (mysqli_num_rows($result) > 0) {
     echo "<h2><b>Accounts to Follow</b></h2>";
-    echo "<div style='width: 800px; border: 1px solid lightgrey; margin-bottom: 20px;'>";
-    echo "<table style='border-collapse: collapse;'>";
+    echo "<div style='width: 400px; margin-bottom: 20px;'>";
+    echo "<table style='width: 400px; border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr>";
+        echo "<tr style='border: 1px solid lightgrey;'>";
         echo "<td style='border: none;'>";
         echo "<h3 class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: rgb(145, 0, 0); margin-top: 0; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h3>";
         echo "</td>";

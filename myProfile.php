@@ -23,7 +23,7 @@ include "loggedin_navbar.php";
 <div class="button-container">
   <button class="click-button" onclick="toggleFollowers()">Followers</button>
   <button class="click-button" onclick="toggleFollowing()">Following</button>
-  <button class="click-button" onclick="toggleEdit()">Edit Profile</button>
+  <!-- <button class="click-button" onclick="toggleEdit()">Edit Profile</button> -->
 </div>
 </div>
 <!-- <div class="designer-element" style="margin-left: 500px;"> -->
@@ -35,7 +35,7 @@ include "DBConnection.php"; // include the database connection file
 // Get the user ID from the current session
 $user_id = $_SESSION['user_id'];
 
-echo "<br><div style='width: 1000px; border: 1px solid lightgrey; margin-bottom: 3px;'>";
+echo "<br><div style='width: 800px; border: 1px solid lightgrey; padding: 10px;'>";
 include "profilepic.php";
 
 
@@ -61,7 +61,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<div>";
         echo "<p>Bio: ";
         echo "<b class='username'>" . $row['BIO'] . "</b></p>";
-        echo "</div><br>";
+        echo "</div>";
     }
 }
 echo "</div><br>";
@@ -69,7 +69,8 @@ echo "</div><br>";
 mysqli_close($conn); // close the database connection
 ?>
 </div>
-<div class ="edit-profile-container" id="edit" style="display: none;">
+<!-- <div class ="edit-profile-container" id="edit" style="display: none;"> -->
+<div class ="edit-profile-container" id="edit">
 <?php
 include "editProfile.php";
 ?> 

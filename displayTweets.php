@@ -2,7 +2,7 @@
 // Print the data in a table format
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<div style='width: 800px; border: 1px solid lightgrey; margin-bottom: 20px;'>";
+        echo "<div style='width: 800px; border: 1px solid lightgrey; padding: 10px;'>";
         echo "<table style='border-collapse: collapse; width: 100%;'>";
         echo "<tr>";
         echo "<td style='border: none; padding: 5px; background-color: white; display: flex; align-items: center;'>";

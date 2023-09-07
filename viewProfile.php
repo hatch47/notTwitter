@@ -31,7 +31,7 @@ include "loggedin_navbar.php";
 <?php
 include "DBConnection.php"; // include the database connection file
 
-echo "<br><div style='width: 1000px; border: 1px solid lightgrey; margin-bottom: 3px;'>";
+echo "<br><div style='width: 800px; border: 1px solid lightgrey;  padding: 10px;'>";
 include "viewProfilePic.php";
 
 

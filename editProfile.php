@@ -93,7 +93,7 @@ if (!empty($_FILES['profile_picture']['name'])) {
 <div class="container">
   <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
     <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-    <label>Edit Email</label><br>
+    <b><label>Edit Email</label><br>
     <input type="email" name="new_email"><br>
 
     <br><label>Edit Username</label><br>
@@ -105,31 +105,12 @@ if (!empty($_FILES['profile_picture']['name'])) {
     <br><label>Edit Bio</label><br>
     <input type="text" name="new_bio"><br>
 
-    <br><label>Upload Profile Picture</label><br>
+    <br><label>Upload Profile Picture</label><br></b>
     <input type="file" name="profile_picture"><br><br>
 
     <input type="submit" name="save_changes" value="Save" onclick="showSavedMessage()">
   </form>
 </div>
-
-<!-- <div class="container">
-  <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-    <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-    <label>Edit Email</label><br>
-    <input type="email" name="new_email"><br>
-
-    <br><label>Edit Username</label><br>
-    <input type="text" name="new_username"><br>
-
-    <br><label>Edit Display Name</label><br>
-    <input type="text" name="new_displayname"><br>
-
-    <br><label>Edit Bio</label><br>
-    <input type="text" name="new_bio"><br><br>
-
-    <input type="submit" name="save_changes" value="Save" onclick="showSavedMessage()">
-  </form>
-</div> -->
 
 <script>
 function showSavedMessage() {
