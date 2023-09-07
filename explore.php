@@ -26,7 +26,7 @@ include "DBConnection.php"; // include the database connection file
 $user_id = $_SESSION['user_id'];
 
 // Select the names from the table
-$sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, T.TWEETDATE, ua.PROFILEPIC
+$sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, t.TWEETDATE, ua.PROFILEPIC
         FROM USERACCOUNT ua
         LEFT JOIN TWEET t ON t.OWNERID = ua.ID
         ORDER BY t.ID DESC";

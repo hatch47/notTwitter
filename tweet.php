@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $content = mysqli_real_escape_string($conn, $_POST['content']);
 
   // Insert data into Tweet table
-  $sql = "INSERT INTO Tweet (OwnerID, Content) VALUES ('$user_id','$content')";
+  $sql = "INSERT INTO TWEET (OwnerID, Content) VALUES ('$user_id','$content')";
   $result = mysqli_query($conn, $sql);
 
   if ($result) {

@@ -261,7 +261,7 @@ $user_id = $_SESSION['user_id'];
 $user_profile = $_GET['username'];
 
 // Select the names from the user table
-$sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, T.TWEETDATE, ua.PROFILEPIC
+$sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, t.TWEETDATE, ua.PROFILEPIC
         FROM USERACCOUNT ua
         LEFT JOIN TWEET t ON t.OWNERID = ua.ID
         WHERE ua.USERNAME = ?

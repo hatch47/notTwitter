@@ -22,8 +22,8 @@ if (!empty($_FILES['profile_picture']['name'])) {
 
   // Move the uploaded file to the destination directory
   if (move_uploaded_file($file_tmp, $file_destination)) {
-    // Update the PROFILEPIC column in the useraccount table
-    $sql = "UPDATE useraccount SET PROFILEPIC = '$file_destination' WHERE ID = $user_id";
+    // Update the PROFILEPIC column in the USERACCOUNT table
+    $sql = "UPDATE USERACCOUNT SET PROFILEPIC = '$file_destination' WHERE ID = $user_id";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
@@ -41,7 +41,7 @@ if (!empty($_FILES['profile_picture']['name'])) {
 
   if (!empty($_POST['new_username'])) {
     $new_username = mysqli_real_escape_string($conn, $_POST['new_username']);
-    $sql = "UPDATE useraccount SET USERNAME = '@$new_username' WHERE ID = $user_id";
+    $sql = "UPDATE USERACCOUNT SET USERNAME = '@$new_username' WHERE ID = $user_id";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
@@ -53,7 +53,7 @@ if (!empty($_FILES['profile_picture']['name'])) {
 
   if (!empty($_POST['new_displayname'])) {
     $new_displayname = mysqli_real_escape_string($conn, $_POST['new_displayname']);
-    $sql = "UPDATE useraccount SET DISPLAYNAME = '$new_displayname' WHERE ID = $user_id";
+    $sql = "UPDATE USERACCOUNT SET DISPLAYNAME = '$new_displayname' WHERE ID = $user_id";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
@@ -65,7 +65,7 @@ if (!empty($_FILES['profile_picture']['name'])) {
 
   if (!empty($_POST['new_email'])) {
     $new_email = mysqli_real_escape_string($conn, $_POST['new_email']);
-    $sql = "UPDATE useraccount SET EMAIL = '$new_email' WHERE ID = $user_id";
+    $sql = "UPDATE USERACCOUNT SET EMAIL = '$new_email' WHERE ID = $user_id";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
@@ -77,7 +77,7 @@ if (!empty($_FILES['profile_picture']['name'])) {
 
   if (!empty($_POST['new_bio'])) {
     $new_bio = mysqli_real_escape_string($conn, $_POST['new_bio']);
-    $sql = "UPDATE useraccount SET BIO = '$new_bio' WHERE ID = $user_id";
+    $sql = "UPDATE USERACCOUNT SET BIO = '$new_bio' WHERE ID = $user_id";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {

@@ -38,7 +38,6 @@ $user_id = $_SESSION['user_id'];
 echo "<br><div style='width: 800px; border: 1px solid lightgrey; padding: 10px;'>";
 include "profilepic.php";
 
-
 $sql = "SELECT USERNAME, DISPLAYNAME
         FROM USERACCOUNT
         WHERE ID = $user_id";
@@ -165,7 +164,7 @@ include "DBConnection.php"; // include the database connection file
 $user_id = $_SESSION['user_id'];
 
 // Select the names from the user table
-$sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, T.TWEETDATE, ua.PROFILEPIC
+$sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, t.TWEETDATE, ua.PROFILEPIC
         FROM USERACCOUNT ua
         LEFT JOIN TWEET t ON t.OWNERID = ua.ID
         WHERE ua.ID = $user_id

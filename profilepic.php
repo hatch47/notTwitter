@@ -19,8 +19,9 @@ if ($result && mysqli_num_rows($result) > 0) {
   } else {
     echo "<img src='ProfileLogo.png' style='width: 200px; height: 250px;' alt='Logo'>";
   }
-} else {
-    echo "<img src='ProfileLogo.png' style='width: 200px; height: 250px;' alt='Logo'>";
 }
+// } else {
+//     echo "<img src='ProfileLogo.png' style='width: 200px; height: 250px;' alt='Logo'>";
+// }
 
 ?>

@@ -5,7 +5,7 @@ if (isset($_POST['submit'])) { // check if submit button was pressed
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = $_POST['password'];
 
-    $sql = "SELECT id, user_password FROM useraccount WHERE username='@$username'";
+    $sql = "SELECT id, user_password FROM USERACCOUNT WHERE username='@$username'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) == 1) { // if email exists
@@ -60,6 +60,9 @@ if (isset($_POST['submit'])) { // check if submit button was pressed
     </form>
 
     <p>Not a member? <a href="signup.php">Sign up</a></p>
+
+    <p>To view Not Twitter, you can log in with username: <b>Guest</b> password: <b>555555</b></p>
+    
 
 </div>
 </body>

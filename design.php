@@ -13,6 +13,7 @@
 
 <div class="heading-with-logo">
   <h1 class="heading"><a href="home.php"><img src="logo.png" alt="Logo"></a> Not Twitter</h1>
+  <!-- <h1 class="heading"><a href="home.php"><img src="https://i.ibb.co/GvPVWht/Logo.png" alt="Logo"></a> Not Twitter</h1> -->
 </div>
 
 
