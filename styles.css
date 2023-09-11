@@ -143,11 +143,11 @@
 .edit-profile-container {
     position: absolute;
     top: 27%;
-    right: 30%;
+    right: 40%;
     text-align: left;
     background-color: white;
     padding: 10px;
-    /* border: 1px solid lightgrey; */
+    border: 1px solid lightgrey;
   
 }
 

@@ -23,7 +23,7 @@ include "loggedin_navbar.php";
 <div class="button-container">
   <button class="click-button" onclick="toggleFollowers()">Followers</button>
   <button class="click-button" onclick="toggleFollowing()">Following</button>
-  <!-- <button class="click-button" onclick="toggleEdit()">Edit Profile</button> -->
+  <button class="click-button" onclick="toggleEdit()">Edit Profile</button>
 </div>
 </div>
 <!-- <div class="designer-element" style="margin-left: 500px;"> -->
@@ -68,8 +68,8 @@ echo "</div><br>";
 mysqli_close($conn); // close the database connection
 ?>
 </div>
-<!-- <div class ="edit-profile-container" id="edit" style="display: none;"> -->
-<div class ="edit-profile-container" id="edit">
+<div class ="edit-profile-container" id="edit" style="display: none;">
+<!-- <div class ="edit-profile-container" id="edit"> -->
 <?php
 include "editProfile.php";
 ?> 
