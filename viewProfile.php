@@ -264,7 +264,7 @@ $user_profile = $_GET['username'];
 $sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, t.TWEETDATE, ua.PROFILEPIC
         FROM USERACCOUNT ua
         LEFT JOIN TWEET t ON t.OWNERID = ua.ID
-        WHERE ua.USERNAME = ?
+        WHERE ua.USERNAME = ? AND t.ID IS NOT NULL
         ORDER BY t.ID DESC";
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "s", $user_profile);

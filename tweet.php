@@ -6,7 +6,7 @@
 <head>
 <link rel="stylesheet" href="styles.css">
 <script src="script.js"></script>
-<title>tweet</title>
+<title>Tweet</title>
 </head>
 <body>
 <div class="container">

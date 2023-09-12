@@ -167,7 +167,7 @@ $user_id = $_SESSION['user_id'];
 $sql = "SELECT ua.USERNAME, t.CONTENT, ua.DISPLAYNAME, t.TWEETDATE, ua.PROFILEPIC
         FROM USERACCOUNT ua
         LEFT JOIN TWEET t ON t.OWNERID = ua.ID
-        WHERE ua.ID = $user_id
+        WHERE ua.ID = $user_id AND t.ID IS NOT NULL
         ORDER BY t.ID DESC";
 $result = mysqli_query($conn, $sql);
 include "displayTweets.php";

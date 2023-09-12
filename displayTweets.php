@@ -16,6 +16,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<tr>";
         echo "<td colspan='2' style='border: none; padding: 5px; background-color: white;'>";
         echo "<h4 style='margin: 0 0 5px 0;'>". $row['CONTENT'] . "</h4>";
+        echo "<h6 style='color: dimgrey; margin: 0 0 5px;'>&#128151; 0 &nbsp; &#128257; 0 &nbsp; &#128172; 0</h6>";
         echo "</td>";
         echo "</tr>";
         echo "<tr>";
@@ -30,4 +31,22 @@ if (mysqli_num_rows($result) > 0) {
     echo "No tweets found.";
 }
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Getting user id
+    // $user_id = $_SESSION['user_id'];
+  
+    // Prepare and bind parameters
+    // $likes = mysqli_real_escape_string($conn, $_POST['likes']);
+    $likes = 1;
+  
+    // Insert data into Tweet table
+    $sql = "INSERT INTO TWEETMETRICS (Likes) VALUES ('$likes')";
+    $result = mysqli_query($conn, $sql);
+  
+  
+    $conn->close();
+  }
+
 ?>
+
+
