@@ -1,20 +1,5 @@
-<?php
-// require "session.php";
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="styles.css">
-<script src="script.js"></script>
-<title>Tweet</title>
-</head>
-<body>
-<div class="container">
-
 <br><br>
 <?php
-// include "design.php";
-// include "loggedin_navbar.php";
 include "DBConnection.php";
 
 // Check connection
@@ -22,7 +7,7 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["content"])) {
   // Getting user id
   $user_id = $_SESSION['user_id'];
 
@@ -36,8 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($result) {
     echo "<br><span id='success-message'>Tweet Sent.</span>";
   }
-
-  $conn->close();
 }
 ?>
 
@@ -62,6 +45,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-</div>
-</body>
-</html>
+

@@ -15,9 +15,9 @@ if ($result && mysqli_num_rows($result) > 0) {
 
   // Display the profile picture if it exists
   if (!empty($profilePicPath) && file_exists($profilePicPath)) {
-    echo "<img src='$profilePicPath' style='width: 200px; height: 250px;' alt='Profile Picture'>";
+    echo "<img src='$profilePicPath' style='max-width: 450px; max-height: 250px;' alt='Profile Picture'>";
   } else {
-    echo "<img src='ProfileLogo.png' style='width: 200px; height: 250px;' alt='Logo'>";
+    echo "<img src='ProfileLogo.png' style='max-width: 250px; max-height: 250px;' alt='Logo'>";
   }
 }
 // } else {
