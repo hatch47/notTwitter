@@ -3,7 +3,7 @@
 // Assuming you have a database connection established.
 
 // Check if there are any likes for the tweet with TweetID equal to $row['ID']
-$query_check_likes = "SELECT COUNT(*) AS like_count FROM TweetMetrics WHERE TweetID = " . $row['ID'] . " AND Likes = 1";
+$query_check_likes = "SELECT COUNT(*) AS like_count FROM TWEETMETRICS WHERE TweetID = " . $row['ID'] . " AND Likes = 1";
 $result_check_likes = mysqli_query($conn, $query_check_likes);
 
 if ($result_check_likes) {
@@ -15,7 +15,7 @@ if ($result_check_likes) {
 }
 
 // Check if there are any retweets for the tweet with TweetID equal to $row['ID']
-$query_check_retweets = "SELECT COUNT(*) AS retweet_count FROM TweetMetrics WHERE TweetID = " . $row['ID'] . " AND Retweets = 1";
+$query_check_retweets = "SELECT COUNT(*) AS retweet_count FROM TWEETMETRICS WHERE TweetID = " . $row['ID'] . " AND Retweets = 1";
 $result_check_retweets = mysqli_query($conn, $query_check_retweets);
 
 if ($result_check_retweets) {
@@ -27,7 +27,7 @@ if ($result_check_retweets) {
 }
 
 // Check if there are any comments for the tweet with TweetID equal to $row['ID']
-$query_check_comments = "SELECT COUNT(*) AS comment_count FROM TweetMetrics WHERE TweetID = " . $row['ID'] . " AND comments = 1";
+$query_check_comments = "SELECT COUNT(*) AS comment_count FROM TWEETMETRICS WHERE TweetID = " . $row['ID'] . " AND comments = 1";
 $result_check_comments = mysqli_query($conn, $query_check_comments);
 
 if ($result_check_comments) {

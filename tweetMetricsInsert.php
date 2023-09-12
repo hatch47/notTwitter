@@ -5,7 +5,7 @@ if (isset($_POST['like_button'])) {
     $tweet_id = $_POST['tweet_id']; // Get the tweet ID from the form
 
     // Insert a like into the tweetmetrics table
-    $insert_query = "INSERT INTO TweetMetrics (TweetID, Likes) VALUES (?, 1) ON DUPLICATE KEY UPDATE Likes = Likes + 1";
+    $insert_query = "INSERT INTO TWEETMETRICS (TweetID, Likes) VALUES (?, 1) ON DUPLICATE KEY UPDATE Likes = Likes + 1";
     $stmt = mysqli_prepare($conn, $insert_query);
     mysqli_stmt_bind_param($stmt, "i", $tweet_id);
 
@@ -23,7 +23,7 @@ if (isset($_POST['retweet_button'])) {
     $tweet_id = $_POST['tweet_id']; // Get the tweet ID from the form
 
     // Insert a like into the tweetmetrics table
-    $insert_query = "INSERT INTO TweetMetrics (TweetID, Retweets) VALUES (?, 1) ON DUPLICATE KEY UPDATE Retweets = Retweets + 1";
+    $insert_query = "INSERT INTO TWEETMETRICS (TweetID, Retweets) VALUES (?, 1) ON DUPLICATE KEY UPDATE Retweets = Retweets + 1";
     $stmt = mysqli_prepare($conn, $insert_query);
     mysqli_stmt_bind_param($stmt, "i", $tweet_id);
 
@@ -41,7 +41,7 @@ if (isset($_POST['comment_button'])) {
     $tweet_id = $_POST['tweet_id']; // Get the tweet ID from the form
 
     // Insert a like into the tweetmetrics table
-    $insert_query = "INSERT INTO TweetMetrics (TweetID, Comments) VALUES (?, 1) ON DUPLICATE KEY UPDATE Comments = Comments + 1";
+    $insert_query = "INSERT INTO TWEETMETRICS (TweetID, Comments) VALUES (?, 1) ON DUPLICATE KEY UPDATE Comments = Comments + 1";
     $stmt = mysqli_prepare($conn, $insert_query);
     mysqli_stmt_bind_param($stmt, "i", $tweet_id);
 
