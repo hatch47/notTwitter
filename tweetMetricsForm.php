@@ -26,7 +26,7 @@ if ($result_check_retweets) {
     $retweet_count = 0;
 }
 
-// Check if there are any comments for the tweet with TweetID equal to $row['ID']
+// Check if there are any comments for the tweet with TweetID equal to $row['ID']. eventually the comments query will check and count to see if the comments row is not null and TweetID = " . $row['ID'] . - an onclick will then select all and display all of the comments
 $query_check_comments = "SELECT COUNT(*) AS comment_count FROM TWEETMETRICS WHERE TweetID = " . $row['ID'] . " AND comments = 1";
 $result_check_comments = mysqli_query($conn, $query_check_comments);
 
@@ -62,14 +62,41 @@ echo '</div>';
 echo '</form>';
 
 // comment button
+// echo '<form method="post">';
+// echo '<input type="hidden" name="tweet_id" value="' . $row['ID'] . '">'; 
+// echo '<div style="display: inline-block;">';
+// echo '<span style="color: dimgrey; margin-right: -2px;">' . $comment_count . '</span>';
+// echo '<button type="submit" name="comment_button" style="border: none; background: none; cursor: pointer;" title="Comment on Tweet">&#128172;</button>';
+// echo '</div>';
+// echo '</form>';
+// echo '</div>';
+
+// Comment button
 echo '<form method="post">';
-echo '<input type="hidden" name="tweet_id" value="' . $row['ID'] . '">'; 
+echo '<input type="hidden" name="tweet_id" value="' . $row['ID'] . '">';
 echo '<div style="display: inline-block;">';
 echo '<span style="color: dimgrey; margin-right: -2px;">' . $comment_count . '</span>';
-echo '<button type="submit" name="comment_button" style="border: none; background: none; cursor: pointer;" title="Comment on Tweet">&#128172;</button>';
-echo '</div>';
+echo '<button type="button" name="comment_button" style="border: none; background: none; cursor: pointer;" title="Comment on Tweet" onclick="showCommentForm()">&#128172;</button>';
+echo '<button type="submit" name="newComment_button" style="border: none; background: none; cursor: pointer;" title="Comment on Tweet">&#128172;</button>';
+echo '</div></div>';
 echo '</form>';
-echo '</div>';
+
+
 ?>
 
+<script>
+let formVisible = false;
+
+function showCommentForm() {
+    const commentForm = document.getElementById('commentForm');
+    
+    if (formVisible) {
+        commentForm.style.display = 'none';
+    } else {
+        commentForm.style.display = 'block';
+    }
+
+    formVisible = !formVisible;
+}
+</script>
  <!-- &nbsp;  echo '<h5>0</h5>'; color: dimgrey; -->

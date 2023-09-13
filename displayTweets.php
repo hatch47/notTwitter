@@ -26,6 +26,11 @@ if (mysqli_num_rows($result) > 0) {
         echo "<h6 style='color: dimgrey; margin: 0 0 5px;'>". $row['TWEETDATE'] . "</h6>";
         echo "</td>";
         echo "</tr>";
+        echo "<tr>";
+        echo "<td colspan='2' style='border: none; padding: 5px; background-color: white;'>";
+        include "commentForm.php";
+        echo "</td>";
+        echo "</tr>";
         echo "</table>";
         echo "</div>";
     }
@@ -50,5 +55,6 @@ if (mysqli_num_rows($result) > 0) {
 //   }
 
 ?>
+
 
 
