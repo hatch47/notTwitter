@@ -77,7 +77,8 @@ echo '<input type="hidden" name="tweet_id" value="' . $row['ID'] . '">';
 echo '<div style="display: inline-block;">';
 echo '<span style="color: dimgrey; margin-right: -2px;">' . $comment_count . '</span>';
 echo '<button type="button" name="comment_button" style="border: none; background: none; cursor: pointer;" title="Comment on Tweet" onclick="showCommentForm()">&#128172;</button>';
-echo '<button type="submit" name="newComment_button" style="border: none; background: none; cursor: pointer;" title="Comment on Tweet">&#128172;</button>';
+// Create js to make the newComment button disappear when clicked twice
+echo '<button type="submit" name="newComment_button" style="border: none; background: none; cursor: pointer;" title="View Comments" onclick="showComments()">&#128173;</button>';
 echo '</div></div>';
 echo '</form>';
 
@@ -89,6 +90,22 @@ let formVisible = false;
 
 function showCommentForm() {
     const commentForm = document.getElementById('commentForm');
+    
+    if (formVisible) {
+        commentForm.style.display = 'none';
+    } else {
+        commentForm.style.display = 'block';
+    }
+
+    formVisible = !formVisible;
+}
+</script>
+
+<script>
+let formVisible = false;
+
+function showComments() {
+    const commentForm = document.getElementById('showComments');
     
     if (formVisible) {
         commentForm.style.display = 'none';
