@@ -1,5 +1,5 @@
 <?php
-
+// Comments are only working for the first tweet - major bug, needs fixing - also commenting 3x on server
 // Comment form
 echo '<div id="commentForm" style="display: none;"><form method="POST">';
 echo '<input type="hidden" name="tweet_id" value="' . $row['ID'] . '">';

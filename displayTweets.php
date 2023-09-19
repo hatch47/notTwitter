@@ -38,21 +38,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "No tweets found.";
 }
 
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Getting user id
-    // $user_id = $_SESSION['user_id'];
-  
-    // Prepare and bind parameters
-    // $likes = mysqli_real_escape_string($conn, $_POST['likes']);
-    // $likes = 1;
-  
-    // Insert data into Tweet table
-    // $sql = "INSERT INTO TWEETMETRICS (Likes) VALUES ('$likes')";
-    // $result = mysqli_query($conn, $sql);
-  
-  
-    // $conn->close();
-//   }
+
 
 ?>
 

@@ -126,7 +126,7 @@ if (isset($_POST['newComment_button'])) {
           // Check if there are any new comments
           if (mysqli_num_rows($comment_result) > 0) {
               echo "<table>";
-              echo "<tr><th>Reactor ID</th><th>Comments</th></tr>";
+              echo "<tr><th></th><th>Comments</th></tr>";
   
               // Loop through the new comments and display them in a table
               while ($comment_row = mysqli_fetch_assoc($comment_result)) {
