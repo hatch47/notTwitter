@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $search = $_POST['search'];
 
   // Prepare the SQL query with a placeholder for the search term
-  $sql = "SELECT USERNAME FROM USERACCOUNT WHERE USERNAME LIKE '%{$search}%'";
+  $sql = "SELECT USERNAME, PROFILEPIC FROM USERACCOUNT WHERE USERNAME LIKE '%{$search}%'";
 
   // Execute the query
   $result = mysqli_query($conn, $sql);
@@ -44,7 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "<table style='width: 400px; border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
       echo "<tr style='border: 1px solid lightgrey;'>";
-      echo "<td style='border: none;'>";
+      echo "<td style='border: none; padding: 5px; background-color: white; display: flex; align-items: center;'>";
+      echo "<img src='" . $row['PROFILEPIC'] . "' alt='Profile Picture' style='max-width: 60px; max-height: 60px;'>";
       echo "<h3 class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: rgb(145, 0, 0); margin-top: 0; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h3>";
       echo "</td>";
       echo "</tr>";
@@ -59,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php
 include "DBConnection.php"; // include the database connection file
 
-$sql = "SELECT USERNAME
+$sql = "SELECT USERNAME, PROFILEPIC
         FROM USERACCOUNT";
 
 $result = mysqli_query($conn, $sql); // Execute the query and assign the result to $result
@@ -72,7 +73,8 @@ if (mysqli_num_rows($result) > 0) {
     echo "<table style='width: 400px; border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr style='border: 1px solid lightgrey;'>";
-        echo "<td style='border: none;'>";
+        echo "<td style='border: none; padding: 5px; background-color: white; display: flex; align-items: center;'>";
+        echo "<img src='" . $row['PROFILEPIC'] . "' alt='Profile Picture' style='max-width: 60px; max-height: 60px;'>";
         echo "<h3 class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: rgb(145, 0, 0); margin-top: 0; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h3>";
         echo "</td>";
         echo "</tr>";

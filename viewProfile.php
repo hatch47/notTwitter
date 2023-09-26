@@ -175,7 +175,7 @@ mysqli_close($conn); // close the database connection
   $user_profile = $_GET['username'];
 
   // Select the names from the user table
-  $sql = "SELECT ua_follower.USERNAME AS USERNAME
+  $sql = "SELECT ua_follower.USERNAME AS USERNAME, ua_follower.PROFILEPIC AS PROFILEPIC
   FROM USERACCOUNT ua_owner
   JOIN FOLLOWER f ON ua_owner.ID = f.OWNERID
   JOIN USERACCOUNT ua_follower ON ua_follower.ID = f.FOLLOWERID
@@ -192,7 +192,8 @@ if (mysqli_num_rows($result) > 0) {
     echo "<table style='border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
-        echo "<td style='border: none;'>";
+        echo "<td style='border: none; padding: 5px; background-color: white; display: flex; align-items: center;'>";
+        echo "<img src='" . $row['PROFILEPIC'] . "' alt='Profile Picture' style='max-width: 60px; max-height: 60px;'>";
         echo "<h3 class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: rgb(145, 0, 0); margin-top: 0; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h3>";
         echo "</td>";
         echo "</tr>";
@@ -216,7 +217,7 @@ include "DBConnection.php"; // include the database connection file
 $user_id = $_SESSION['user_id'];
 $user_profile = $_GET['username'];
 
-$sql = "SELECT ua_following.USERNAME AS USERNAME
+$sql = "SELECT ua_following.USERNAME AS USERNAME, ua_following.PROFILEPIC AS PROFILEPIC
 FROM USERACCOUNT ua_owner
 JOIN FOLLOWER f ON ua_owner.ID = f.FOLLOWERID
 JOIN USERACCOUNT ua_following ON ua_following.ID = f.OWNERID
@@ -233,7 +234,8 @@ if (mysqli_num_rows($result) > 0) {
     echo "<table style='border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
-        echo "<td style='border: none;'>";
+        echo "<td style='border: none; padding: 5px; background-color: white; display: flex; align-items: center;'>";
+        echo "<img src='" . $row['PROFILEPIC'] . "' alt='Profile Picture' style='max-width: 60px; max-height: 60px;'>";
         echo "<h3 class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: rgb(145, 0, 0); margin-top: 0; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h3>";
         echo "</td>";
         echo "</tr>";

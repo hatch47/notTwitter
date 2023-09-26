@@ -89,7 +89,7 @@ include "editProfile.php";
   $user_id = $_SESSION['user_id'];
 
   // Select the names from the user table
-  $sql = "SELECT ua.USERNAME
+  $sql = "SELECT ua.USERNAME, ua.PROFILEPIC
   FROM USERACCOUNT ua
   JOIN FOLLOWER f ON f.FOLLOWERID = ua.ID
   WHERE f.OWNERID = $user_id";
@@ -102,7 +102,8 @@ if (mysqli_num_rows($result) > 0) {
     echo "<table style='border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
-        echo "<td style='border: none;'>";
+        echo "<td style='border: none; padding: 5px; background-color: white; display: flex; align-items: center;'>";
+        echo "<img src='" . $row['PROFILEPIC'] . "' alt='Profile Picture' style='max-width: 60px; max-height: 60px;'>";
         echo "<h3 class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: rgb(145, 0, 0); margin-top: 0; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h3>";
         echo "</td>";
         echo "</tr>";
@@ -125,7 +126,7 @@ include "DBConnection.php"; // include the database connection file
 // Get the user ID from the current session
 $user_id = $_SESSION['user_id'];
 
-$sql = "SELECT ua.USERNAME
+$sql = "SELECT ua.USERNAME, ua.PROFILEPIC
 FROM USERACCOUNT ua
 JOIN FOLLOWER f ON f.OWNERID = ua.ID
 WHERE f.FOLLOWERID = $user_id";
@@ -138,7 +139,8 @@ if (mysqli_num_rows($result) > 0) {
     echo "<table style='border-collapse: collapse;'>";
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
-        echo "<td style='border: none;'>";
+        echo "<td style='border: none; padding: 5px; background-color: white; display: flex; align-items: center;'>";
+        echo "<img src='" . $row['PROFILEPIC'] . "' alt='Profile Picture' style='max-width: 60px; max-height: 60px;'>";
         echo "<h3 class='username'><b><a href='viewProfile.php?username=" . urlencode($row['USERNAME']) . "' style='color: rgb(145, 0, 0); margin-top: 0; text-decoration: none;'>" . $row['USERNAME'] . "</a></b></h3>";
         echo "</td>";
         echo "</tr>";

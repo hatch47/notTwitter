@@ -30,11 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
   }
 
+  // Set the desired profile picture file name
+$desired_file_name = 'ProfileLogo91847.png'; // Change this to the desired file name
+
   // Prepare and bind parameters
   $email = mysqli_real_escape_string($conn, $_POST['email']);
   $password = password_hash($password, PASSWORD_DEFAULT);
   $username = mysqli_real_escape_string($conn, $_POST['username']);
-  $sql = "INSERT INTO USERACCOUNT (email, username, user_password, displayname) VALUES ('$email', '@$username', '$password', '$username')";
+  // $sql = "INSERT INTO USERACCOUNT (email, username, user_password, displayname) VALUES ('$email', '@$username', '$password', '$username')";
+  $sql = "INSERT INTO USERACCOUNT (email, username, user_password, displayname, PROFILEPIC) VALUES ('$email', '@$username', '$password', '$username', 'profile_pictures/$desired_file_name')";
 
   // Execute statement and check for errors
   if ($conn->query($sql) === TRUE) {
