@@ -20,7 +20,6 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Check if password and confirm password match
   $password = mysqli_real_escape_string($conn, $_POST['password']);
