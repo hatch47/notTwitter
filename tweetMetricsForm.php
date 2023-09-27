@@ -38,10 +38,6 @@ if ($result_check_comments) {
     $comment_count = 0;
 }
 
-
-
-
-
 echo '<div style="display: flex;">';
 // like button
 echo '<form method="post">';
@@ -81,7 +77,6 @@ echo '<button type="button" name="comment_button" style="border: none; backgroun
 echo '<button type="submit" name="newComment_button" style="border: none; background: none; cursor: pointer;" title="View Comments" onclick="showComments()">&#128173;</button>';
 echo '</div></div>';
 echo '</form>';
-
 
 ?>
 

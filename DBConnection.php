@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "Sql121212";
 $dbname = "notTwitter";
 
 // Create connection
